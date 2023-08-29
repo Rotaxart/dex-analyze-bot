@@ -1,0 +1,30 @@
+{
+  "name": "dex-analyzer-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/app.js",
+    "start:dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./src/app.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^20.5.7",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "eslint": "^8.48.0",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "alchemy-sdk": "^2.10.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.7.1",
+    "telegraf": "^4.12.2",
+    "telegraf-session-local": "^2.1.1"
+  }
+}
