@@ -9,8 +9,6 @@ import { HelpCommand } from "./commands/help.command";
 import { IUserService } from "./users/user-service.interface";
 import { UserService } from "./users/user.service";
 import { AnalyzeCommand } from "./commands/analyze.command";
-import { AnalyzeService } from "./analyze/analyze.service";
-import { IAnalyze } from "./analyze/analyze.interface";
 
 class Bot {
   bot: Telegraf<IBotContext>;

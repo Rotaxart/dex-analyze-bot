@@ -1,4 +1,4 @@
-import { User, UserShared } from "telegraf/typings/core/types/typegram";
+import { User } from "telegraf/typings/core/types/typegram";
 import { Roles } from "../enums/roles.enum";
 import { AnalyzeReq } from "../../analyze/models/analyze-request.interface";
 

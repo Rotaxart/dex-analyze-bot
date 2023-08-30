@@ -20,7 +20,6 @@ export class AnalyzeCommand extends Command {
 
   handle(): void {
     this.bot.command("analyze", async (ctx) => {
-      console.log(ctx.message);
       try {
         this.userService.attachUser(ctx);
         const validate = this.validate(ctx);
@@ -28,8 +27,9 @@ export class AnalyzeCommand extends Command {
           ctx.reply(validate.message);
         } else {
           ctx.reply(`Please wait...`);
-          await this.analyzeService.analyzeAddress(ctx);
-          console.log(ctx.update.message);
+          const path = await this.analyzeService.analyzeAddress(ctx);
+          ctx.telegram.sendDocument(ctx.chat.id, { source: path });
+          this.userService.addReqest(ctx);
         }
       } catch (error: any) {
         console.error(error);
@@ -47,7 +47,6 @@ export class AnalyzeCommand extends Command {
     );
 
     const params = ctx.message?.text.split(" ");
-    console.log(params);
     if (params.length === 3) {
       if (!isAddress(params[1])) {
         return { success: false, message: "Invalid address" };

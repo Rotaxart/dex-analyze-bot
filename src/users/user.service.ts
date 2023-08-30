@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { writeFileSync } from "fs";
 import { IBotContext } from "../context/context.interface";
 import { Roles } from "./enums/roles.enum";
 import { IUser } from "./models/user.interface";
@@ -45,10 +45,18 @@ export class UserService implements IUserService {
     console.log("===user created===");
     return newUser;
   }
-  getUser(userId: number): IUser {
-    throw new Error("Method not implemented.");
-  }
-  grantRole(userId: number, role: Roles): IUser {
-    throw new Error("Method not implemented.");
+  addReqest(ctx: IBotContext): void {
+    if (!ctx.message) {
+      throw new Error("Message not found");
+    }
+    const { id } = ctx.message.from;
+    const user = this.usersList.find((usr) => usr.id === id);
+    user?.requests.push({
+      ts: Date.now(),
+    });
+    writeFileSync(
+      path.resolve("src/data/users.json"),
+      JSON.stringify(this.usersList),
+    );
   }
 }

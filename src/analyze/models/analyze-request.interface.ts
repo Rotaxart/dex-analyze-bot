@@ -1,5 +1,5 @@
 export interface AnalyzeReq {
   ts: number;
-  address: string;
+  address?: string;
   userId?: number;
 }
